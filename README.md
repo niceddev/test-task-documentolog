@@ -41,7 +41,7 @@ having count(distinct name) < 3;
 ```
 1-НФ: В каждой клеточке 1 запись, нету дублирующихся строк
 ```
-### task-three
+### task-three (смотрите папку выше taskThree)
 ```
 Код в сервисном слое, я просто вызываю его в шаблоне с помощью echo
 
@@ -65,4 +65,8 @@ public function buildHierarchyTreeFromArray(array $commentsArray, int $parentId 
 
     return $tree . '</ul>';
 }
+```
+
+```
+Чтобы запустить: php -S localhost:80
 ```
