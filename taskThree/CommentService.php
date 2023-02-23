@@ -2,7 +2,7 @@
 
 class CommentService
 {
-    public function buildHierarchyTreeFromArray(array $commentsArray, int $parentId = 1, array &$processedIds = [])
+    public function buildHierarchyTreeFromArray(array $commentsArray, int $parentId = 1, array &$processedIds = []): string
     {
         $tree = '<ul>';
 
