@@ -66,3 +66,7 @@ public function buildHierarchyTreeFromArray(array $commentsArray, int $parentId 
     return $tree . '</ul>';
 }
 ```
+
+```
+Чтобы запустить: php -S localhost:80
+```
