@@ -28,7 +28,7 @@ $commentsArray = [
     <h2>Comments:</h2>
     <?php
 
-        echo $commentService->buildHierarchyTreeFromArray($commentsArray);
+        echo $commentService->getHierarchyTreeDOM($commentsArray);
 
     ?>
 </body>

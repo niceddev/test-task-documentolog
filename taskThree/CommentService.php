@@ -2,25 +2,54 @@
 
 class CommentService
 {
-    public function buildHierarchyTreeFromArray(array $commentsArray, int $parentId = 1, array &$processedIds = []): string
+    /**
+     * @param array $commentsArray
+     *
+     * @return string
+     */
+    public function getHierarchyTreeDOM(array $commentsArray): string
     {
-        $tree = '<ul>';
+        $processedIds = [];
 
-        foreach ($commentsArray as $item) {
+        $htmlDOM = '<ul>';
 
-            if ($item[1] === $parentId && !in_array($item[0], $processedIds)) {
+        foreach ($commentsArray as $comment) {
 
-                $processedIds[] = $item[0];
-
-                $tree .= '<li>' . $item[2];
-                $tree .= $this->buildHierarchyTreeFromArray($commentsArray, $item[0], $processedIds);
-                $tree .= '</li>';
-
+            if ($comment[0] === $comment[1]) {
+                $htmlDOM .= '<li>' . $comment[2];
+                $htmlDOM .= $this->buildHierarchyRecursively($commentsArray, $comment[0], $processedIds);
+                $htmlDOM .= '</li>';
             }
 
         }
 
-        return $tree . '</ul>';
+        return $htmlDOM . '</ul>';
+    }
+
+    /**
+     * @param array $commentsArray
+     * @param int $parentId
+     * @param array $processedIds
+     *
+     * @return string
+     */
+    private function buildHierarchyRecursively(array $commentsArray, int $parentId = 1, array &$processedIds = []): string
+    {
+        $htmlDOM = '<ul>';
+
+        foreach ($commentsArray as $item) {
+
+            if ($item[0] !== $parentId && $item[1] === $parentId && !in_array($item[0], $processedIds)) {
+                $processedIds[] = $item[0];
+
+                $htmlDOM .= '<li>' . $item[2];
+                $htmlDOM .= $this->buildHierarchyRecursively($commentsArray, $item[0], $processedIds);
+                $htmlDOM .= '</li>';
+            }
+
+        }
+
+        return $htmlDOM . '</ul>';
     }
 
 }
