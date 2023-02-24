@@ -2,7 +2,7 @@
 
 ### task-one
 ```
-class MySingleton
+final class MySingleton
 {
     private static ?MySingleton $instance = null;
 
