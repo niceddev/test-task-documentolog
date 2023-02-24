@@ -6,6 +6,11 @@ class MySingleton
 {
     private static ?MySingleton $instance = null;
 
+    private function __construct(): void
+    {
+        // TODO: Implement __construct() method.
+    }
+
     public static function getInstance()
     {
         if (is_null(self::$instance)) {
@@ -15,12 +20,12 @@ class MySingleton
         return self::$instance;
     }
 
-    public function __clone(): void
+    private function __clone(): void
     {
         // TODO: Implement __clone() method.
     }
 
-    public function __wakeup(): void
+    private function __wakeup(): void
     {
         // TODO: Implement __wakeup() method.
     }
